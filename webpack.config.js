@@ -9,17 +9,17 @@ module.exports = {
 
     devServer: {
         static: {
-          directory: path.resolve(__dirname, 'build')
+          directory: path.resolve(__dirname, 'build'),
+          publicPath: '/',
         },
         compress: true,
-        port: 8000,
         proxy: {
-            "/api/**": "http://localhost:3000",
+            "/": "http://localhost:3000",
         }
     },
 
     output: {
-        path: path.resolve(__dirname, 'build'),
+        path: path.resolve(__dirname, '/build'),
         filename: 'bundle.js'
     },
     
