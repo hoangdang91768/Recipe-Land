@@ -4,22 +4,22 @@ const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 
 
 module.exports = {
-    mode: "development",
     entry: './client/index.js',
+    mode: process.env.NODE_ENV === 'development' ? 'development' : 'production',
+    devtool: process.env.NODE_ENV === 'development' ? 'eval-source-map' : false,
 
     devServer: {
         static: {
           directory: path.resolve(__dirname, 'build'),
           publicPath: '/',
         },
-        compress: true,
         proxy: {
             "/": "http://localhost:3000",
         }
     },
 
     output: {
-        path: path.resolve(__dirname, '/build'),
+        path: path.join(__dirname, '/build'),
         filename: 'bundle.js'
     },
     
@@ -43,9 +43,14 @@ module.exports = {
         ]
     }, 
 
+    resolve: {
+        extensions: ['.js', '.jsx', '.scss'],
+    },
+
     plugins: [
         new HTMLWebpackPlugin({
-            template: 'index.html'
+            template: './client/index.html',
+            filename: 'index.html',
         }),
         new MiniCssExtractPlugin({
             filename:'[name].[contenthash].css',
