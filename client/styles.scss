@@ -82,7 +82,7 @@ body {
     }
   }
 
-  button {
+  #find-btn {
     width: 50%;
     padding: 10px;
     background-color: $primary-color;
@@ -97,25 +97,42 @@ body {
   }
 
   .recipe-list {
-    list-style-type: none;
+    list-style: none;
     padding: 0;
+    display: flex; // New: Aligns children with flexbox
+    flex-direction: column; // New: Stack children vertically
+    align-items: center; // New: Centers children horizontally
+    width: 100%; // New: Take full width to center content inside
+  }
+  .recipe-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #ffffff;
+    width: 50%; // Adjust width as necessary
+    margin-bottom: 1rem;
+    border-radius: 8px;
+    padding: 0.5rem;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   
-    .recipe-item {
-      background-color: white;
-      padding: px;
+    .recipe-name {
+      flex-grow: 1;
+      margin: 0;
+    }
+  
+    .delete-btn {
+      background-color: #ff4757;
+      color: #ffffff;
+      border: none;
+      padding: 0.5rem 1rem;
       border-radius: 8px;
-      margin: 10px auto;
-      width: 20%;
-      @include box-shadow(0, 4px, 8px, 0, rgba(0, 0, 0, 0.2));
-      &:hover {
-        @include box-shadow(0, 8px, 16px, 0, rgba(0,0,0,0.2));
-        @include transition;
-      }
+      cursor: pointer;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
   
-      h3 {
-        color: $secondary-color;
+      &:hover {
+        background: linear-gradient(45deg, $primary-color, $accent-color);
+        @include transition;
       }
     }
   }
 }
-
