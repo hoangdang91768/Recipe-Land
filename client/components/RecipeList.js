@@ -26,6 +26,15 @@ const RecipeList = () => {
     }
   };
 
+  const handleDelete = async (id) => {
+    try {
+      await fetch(`/api/recipes/${id}`, { method: 'DELETE' });
+      setRecipes(recipes.filter(recipe => recipe._id !== id));
+    } catch (error) {
+      console.error('Error deleting recipe:', error);
+    }
+  };
+
   return (
     <div className="recipe-find">
       <input
@@ -34,7 +43,7 @@ const RecipeList = () => {
         value={searchName}
         onChange={(e) => setSearchName(e.target.value)}
       />
-      <button onClick={findRecipe}>Find</button>
+      <button id="find-btn" onClick={findRecipe}>Find</button>
       {foundRecipe ? (
         <div>
           <h2>Found Recipe:</h2>
@@ -48,14 +57,13 @@ const RecipeList = () => {
 
       {/* show recipe name on the main page */}
       <ul className="recipe-list">
-        {recipes.map((recipe, index) => (
-          <li key={index} className="recipe-item">
-            <h3>{recipe.name}</h3>
-            {/* Other recipe details */}
+        {recipes.map(recipe => (
+          <li key={recipe._id} className="recipe-item">
+            <span className="recipe-name">{recipe.name}</span>
+            <button className="delete-btn" onClick={() => handleDelete(recipe._id)}>DELETE</button>
           </li>
         ))}
       </ul>
-
     </div>
   );
 };
