@@ -20,11 +20,13 @@ mongoose.connect('mongodb://localhost/recipe-book', { useNewUrlParser: true })
 const Schema = mongoose.Schema;
 
 // Recipe model
-const recipesSchema = new Schema({
-  name: String,
-  ingredients: String,
-  instructions: String
-});
+const recipesSchema = new Schema(
+  {
+    name: String,
+    ingredients: String,
+    instructions: String
+  }
+);
 
 const Recipe = mongoose.model('Recipe', recipesSchema, 'recipes');
 
