@@ -35,7 +35,7 @@ const RecipeForm = () => {
   // console.log('Sending JSON:', JSON.stringify({ name, ingredients, instructions }));
 
   return (
-    <form onSubmit={handleSubmit}>
+    <form className="recipe-form" onSubmit={handleSubmit}>
       <textarea
         type="text"
         placeholder="Recipe name"

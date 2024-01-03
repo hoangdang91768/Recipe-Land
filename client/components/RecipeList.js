@@ -27,7 +27,7 @@ const RecipeList = () => {
   };
 
   return (
-    <div>
+    <div className="recipe-find">
       <input
         type="text"
         placeholder="Enter recipe name"
@@ -47,9 +47,12 @@ const RecipeList = () => {
       )}
 
       {/* show recipe name on the main page */}
-      <ul>
-        {recipes.map((recipe) => (
-          <li key={recipe._id}>{recipe.name}</li>
+      <ul className="recipe-list">
+        {recipes.map((recipe, index) => (
+          <li key={index} className="recipe-item">
+            <h3>{recipe.name}</h3>
+            {/* Other recipe details */}
+          </li>
         ))}
       </ul>
 
