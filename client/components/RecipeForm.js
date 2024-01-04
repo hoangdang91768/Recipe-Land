@@ -5,11 +5,12 @@ const RecipeForm = () => {
   const [ingredients, setIngredients] = useState('');
   const [instructions, setInstructions] = useState('');
 
+  // func to add recipe
   const handleSubmit = async (e) => {
     e.preventDefault();
 
     try {
-      const resp = await fetch('/api/recipes', { 
+      const resp = await fetch('/recipes', { 
         method: 'POST',
         headers: {
           'Content-Type': 'application/json'

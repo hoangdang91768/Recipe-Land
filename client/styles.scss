@@ -82,7 +82,7 @@ body {
     }
   }
 
-  #find-btn {
+  button {
     width: 50%;
     padding: 10px;
     background-color: $primary-color;
@@ -95,16 +95,18 @@ body {
       @include transition;
     }
   }
+}
 
-  .recipe-list {
-    list-style: none;
-    padding: 0;
-    display: flex; // New: Aligns children with flexbox
-    flex-direction: column; // New: Stack children vertically
-    align-items: center; // New: Centers children horizontally
-    width: 100%; // New: Take full width to center content inside
-  }
-  .recipe-item {
+// RecipeList Component
+.recipe-list {
+  list-style: none;
+  padding: 0;
+  display: flex; // New: Aligns children with flexbox
+  flex-direction: column; // New: Stack children vertically
+  align-items: center; // New: Centers children horizontally
+  width: 100%; // New: Take full width to center content inside
+
+  li {
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -115,12 +117,12 @@ body {
     padding: 0.5rem;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   
-    .recipe-name {
+    span {
       flex-grow: 1;
       margin: 0;
     }
   
-    .delete-btn {
+    button {
       background-color: #ff4757;
       color: #ffffff;
       border: none;

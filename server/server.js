@@ -28,19 +28,25 @@ const recipesSchema = new Schema(
   }
 );
 
-const Recipe = mongoose.model('Recipe', recipesSchema, 'recipes');
+const Recipe = mongoose.model('Recipe', recipesSchema, 'recipes'); 
+/*
+the 3rd param is the name of collection in dbs 'recipe-book' at line 16.
+if there is no the third param 'recipes',  Mongoose will automatically
+infer the collection name by pluralizing the model name 
+('Recipe' becomes 'recipes')
+*/ 
 
 // GET
-app.get('/api/recipes', async (req, res) => {
+app.get('/recipes', async (req, res) => {
   const recipes = await Recipe.find();
   res.json(recipes);
 });
 
 // ADD
-app.post('/api/recipes', async (req, res) => {
+app.post('/recipes', async (req, res) => {
     // console.log('Received JSON:', req.body);
     try {
-      console.log('POST /api/recipes', req.body);
+      console.log('POST /recipes', req.body);
       const newRecipe = new Recipe(req.body);
       const savedRecipe = await newRecipe.save();
       console.log('SavedRecipe', savedRecipe);
@@ -53,7 +59,7 @@ app.post('/api/recipes', async (req, res) => {
 });
 
 // DELETE 
-app.delete('/api/recipes/:id', async (req, res) => {
+app.delete('/recipes/:id', async (req, res) => {
   try {
     await Recipe.findByIdAndDelete(req.params.id);
     res.status(200).send('Recipe deleted');

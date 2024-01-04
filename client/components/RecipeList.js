@@ -11,7 +11,7 @@ const RecipeList = () => {
   }, []);
 
   const fetchRecipes = () => {
-    fetch('/api/recipes')
+    fetch('/recipes')
       .then((res) => res.json())
       .then((recipes) => setRecipes(recipes));
   };
@@ -26,9 +26,10 @@ const RecipeList = () => {
     }
   };
 
+  // func to delete a recipe
   const handleDelete = async (id) => {
     try {
-      await fetch(`/api/recipes/${id}`, { method: 'DELETE' });
+      await fetch(`/recipes/${id}`, { method: 'DELETE' });
       setRecipes(recipes.filter(recipe => recipe._id !== id));
     } catch (error) {
       console.error('Error deleting recipe:', error);
@@ -58,9 +59,9 @@ const RecipeList = () => {
       {/* show recipe name on the main page */}
       <ul className="recipe-list">
         {recipes.map(recipe => (
-          <li key={recipe._id} className="recipe-item">
-            <span className="recipe-name">{recipe.name}</span>
-            <button className="delete-btn" onClick={() => handleDelete(recipe._id)}>DELETE</button>
+          <li key={recipe._id}>
+            <span>{recipe.name}</span>
+            <button onClick={() => handleDelete(recipe._id)}>DELETE</button>
           </li>
         ))}
       </ul>
